@@ -13,11 +13,13 @@ int main(void) {
 	int x_max, y_max, z_max;
 	int x_min, y_min, z_min;
 	int values[10];
-	int val_maxmin[15];
+	int val_maxmin[30];
 	int threshold;
 	int l = 0;
 	int status = 0;
 	int kroky = 0;
+	int avg_min = 0, avg_max = 0;
+	int avg_min_count = 0, avg_max_count = 0;
 
 	init_SPI1();
 	usart_init();
@@ -87,6 +89,13 @@ int main(void) {
 
 	avg = (values[0] + values[1] + values[2] + values[3] + values[4] + values[5]
 			+ values[6] + values[7] + values[8] + values[9]) / 10;
+
+	if (y_min == 0) {
+		y_min = avg;
+	}
+	if (y_max == 255) {
+		y_max = avg;
+	}
 
 //	for (int k = 0; k <= 9; k++) {
 //		if (values[k] >= avg) {
@@ -170,12 +179,13 @@ int main(void) {
 //
 //		y_max = avg_max / avg_max_count;
 //		y_min = avg_min / avg_min_count;
+//		threshold = (y_max + y_min) / 2;
 
-		if(l == 14){
+		if(l == 29){
 			val_maxmin[l] = avg;
 			y_min = y_max = val_maxmin[0];
 
-			for(int k=1;k<=14;k++){
+			for(int k=1;k<=29;k++){
 				if(val_maxmin[k] < y_min){
 					y_min = val_maxmin[k];
 				}
@@ -191,24 +201,40 @@ int main(void) {
 			l++;
 		}
 
-//		if(avg < threshold && status == 1){
-//			kroky++;
-//			status = 0;
-//		}else if(avg > threshold && status == 0){
-//			status = 1;
+//		if(y_min < 5){
+//			y_min = avg;
 //		}
+//		if(y_max >= 230){
+//			y_max = avg;
+//		}
+//
+//		if(y > y_max) {
+//			y_max = y;
+//		}
+//
+//		if(y < y_min) {
+//			y_min = y;
+//		}
+//
+//		threshold = (y_max + y_min) / 2;
 
-		sprintf(send, "%d          %d          %d          %d\r\n", y_min, avg,
-				y_max, threshold);
-		sprintf(send, "%d\r\n", kroky);
+		if(avg < threshold && status == 1){
+			kroky++;
+			status = 0;
+		}else if(avg > threshold && status == 0){
+			status = 1;
+		}
+
+		sprintf(send, "%d          %d          %d\r\n", avg, threshold, kroky);
+//		sprintf(send, "%d\r\n", kroky);
 		USARTp_start(send);
+
+		for(int k=0;k<5000;k++){}
 
 		//x_old = x;
 		y_old = y;
 		//z_old = z;
 	}
-
-
 
 	return 0;
 }
