@@ -275,3 +275,16 @@ void mySPI_SendData(uint8_t adress, uint8_t data) {
 
 	GPIO_SetBits(GPIOB, GPIO_Pin_6);
 }
+
+void init_button(){
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
+
+	GPIO_InitTypeDef gpioInitStruc;
+
+	gpioInitStruc.GPIO_Mode = GPIO_Mode_IN;
+	gpioInitStruc.GPIO_PuPd = GPIO_PuPd_UP;
+	gpioInitStruc.GPIO_Pin = GPIO_Pin_13;
+	gpioInitStruc.GPIO_Speed = GPIO_Speed_40MHz;
+
+	GPIO_Init(GPIOC, &gpioInitStruc);
+}

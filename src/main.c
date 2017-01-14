@@ -6,83 +6,54 @@
 
 int main(void) {
 	int i = 0;
-	uint16_t x_t, y_t, z_t;
-	int x = 0, y = 0, z = 0;
-	int x_old = 0, y_old = 0, z_old = 0;
+	uint16_t y_t;
+	int y = 0, y_old = 0;
 	int avg = 0;
-	int x_max, y_max, z_max;
-	int x_min, y_min, z_min;
+	int y_max, y_min;
 	int values[10];
 	int val_maxmin[30];
 	int threshold;
 	int l = 0;
 	int status = 0;
 	int kroky = 0;
-	int avg_min = 0, avg_max = 0;
-	int avg_min_count = 0, avg_max_count = 0;
+
+	uint8_t buttonState = 1;
 
 	init_SPI1();
 	usart_init();
+	init_button();
 
-	x = x_min = x_max = x_old = 0;
 	y = y_min = y_max = y_old = 0;
 
 	mySPI_SendData(0x20, 0x67); //LIS3DH nastavenie akcelerometra na citanie hodnot
 
-	//x_t = getSPIdata(0x29);	//X_high 29
 	y_t = getSPIdata(0x2B);	//Y_high, 2B
-	//z_t = getSPIdata(0x2D);	//Z_high 2D
-
-	//x = (int) x_t;
 	y = (int) y_t;
-	//z = (int) z_t;
-
-//	if (x > 255) {
-//		x = 0;
-//	}
 	if (y > 255) {
 		y = 0;
 	}
-//	if (z > 255) {
-//		z = 0;
-//	}
 
 	y_min = y_max = y_old = y;
 
 	while (i <= 9) {
-		x_t = y_t = z_t = 0;
-
-		//x_t = getSPIdata(0x29);	//X_high 29
+		y_t = 0;
 		y_t = getSPIdata(0x2B);	//Y_high, 2B
-		//z_t = getSPIdata(0x2D);	//Z_high 2D
-
-		//x = (int) x_t;
 		y = (int) y_t;
-		//z = (int) z_t;
 
-//		if (x > 255) {
-//			x = x_old;
-//		}
 		if (y > 255) {
 			y = y_old;
 		}
-//		if (z > 255) {
-//			z = z_old;
-//		}
 
-		if(y > y_max) {
+		if (y > y_max) {
 			y_max = y;
 		}
 
-		if(y < y_min) {
+		if (y < y_min) {
 			y_min = y;
 		}
 
 		values[i] = y;
-
-		//x_old = x;
 		y_old = y;
-		//z_old = z;
 
 		i++;
 	}
@@ -97,43 +68,23 @@ int main(void) {
 		y_max = avg;
 	}
 
-//	for (int k = 0; k <= 9; k++) {
-//		if (values[k] >= avg) {
-//			avg_max = avg_max + values[k];
-//			avg_max_count++;
-//		}
-//		if (values[k] <= avg) {
-//			avg_min = avg_min + values[k];
-//			avg_min_count++;
-//		}
-//	}
-//
-//	y_max = avg_max / avg_max_count;
-//	y_min = avg_min / avg_min_count;
-
 	threshold = (y_max + y_min) / 2;
 	i = 0;
 
 	while (1) {
-		x_t = y_t = z_t = 0;
+		buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
 
-		//x_t = getSPIdata(0x29);	//X_high 29
+		if (buttonState == 0) {
+			kroky = 0;
+		}
+
+		y_t = 0;
 		y_t = getSPIdata(0x2B);	//Y_high, 2B
-		//z_t = getSPIdata(0x2D);	//Z_high 2D
-
-		//x = (int) x_t;
 		y = (int) y_t;
-		//z = (int) z_t;
 
-//		if (x > 255) {
-//			x = x_old;
-//		}
 		if (y > 255) {
 			y = y_old;
 		}
-//		if (z > 255) {
-//			z = z_old;
-//		}
 
 		if (i < 9) {
 			values[0] = values[1];
@@ -166,74 +117,40 @@ int main(void) {
 				+ values[5] + values[6] + values[7] + values[8] + values[9])
 				/ 10;
 
-//		for (int k = 0; k <= 9; k++) {
-//			if (values[k] >= avg) {
-//				avg_max = avg_max + values[k];
-//				avg_max_count++;
-//			}
-//			if (values[k] <= avg) {
-//				avg_min = avg_min + values[k];
-//				avg_min_count++;
-//			}
-//		}
-//
-//		y_max = avg_max / avg_max_count;
-//		y_min = avg_min / avg_min_count;
-//		threshold = (y_max + y_min) / 2;
-
-		if(l == 29){
+		if (l == 29) {
 			val_maxmin[l] = avg;
 			y_min = y_max = val_maxmin[0];
 
-			for(int k=1;k<=29;k++){
-				if(val_maxmin[k] < y_min){
+			for (int k = 1; k <= 29; k++) {
+				if (val_maxmin[k] < y_min) {
 					y_min = val_maxmin[k];
 				}
-				if(val_maxmin[k] > y_max){
+				if (val_maxmin[k] > y_max) {
 					y_max = val_maxmin[k];
 				}
 			}
 
 			threshold = (y_max + y_min) / 2;
 			l = 0;
-		}else{
+		} else {
 			val_maxmin[l] = avg;
 			l++;
 		}
 
-//		if(y_min < 5){
-//			y_min = avg;
-//		}
-//		if(y_max >= 230){
-//			y_max = avg;
-//		}
-//
-//		if(y > y_max) {
-//			y_max = y;
-//		}
-//
-//		if(y < y_min) {
-//			y_min = y;
-//		}
-//
-//		threshold = (y_max + y_min) / 2;
-
-		if(avg < threshold && status == 1){
+		if (avg < threshold && status == 1 && (avg > threshold+3 || avg < threshold-3)) {
 			kroky++;
 			status = 0;
-		}else if(avg > threshold && status == 0){
+		} else if (avg > threshold && status == 0) {
 			status = 1;
 		}
 
-		sprintf(send, "%d          %d          %d\r\n", avg, threshold, kroky);
-//		sprintf(send, "%d\r\n", kroky);
+		sprintf(send, "%d      %d      %d      %d      %d\r\n", y_min, y_max, avg, threshold, kroky);
 		USARTp_start(send);
 
-		for(int k=0;k<5000;k++){}
+		for (int k = 0; k < 5000; k++) {
+		}
 
-		//x_old = x;
 		y_old = y;
-		//z_old = z;
 	}
 
 	return 0;

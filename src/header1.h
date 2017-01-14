@@ -19,6 +19,7 @@ char Rec;
 char send[8];
 int j;
 
+void init_button();
 void usart_init();
 void Send_data(char send[]);
 void USARTp_start(char send[]);
