@@ -190,9 +190,9 @@ void init_button() {
 void initialization(){
 	kroky = 0;
 	buttonState = 1;
-	avg = 0;
-	threshold = 0;
-	status = 0;
+	//avg = 0;
+	//threshold = 0;
+	//status = 0;
 	y = 0;
 	y_min = 0;
 	y_max = 0;
@@ -206,9 +206,9 @@ void initialization(){
 }
 
 void reset_kroky(){
-	buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
-
-	if (buttonState == 0) {
+	buttonState = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);	//nacitanie hodnoty o stlaceni tlacidla
+																//stlacene = 0, nestlacene = 1
+	if (buttonState == 0) {	//ak je stlacene tlacidlo, tak sa vynuluju kroky
 		kroky = 0;
 	}
 }
@@ -218,21 +218,21 @@ void delay(int c){
 }
 
 void update_min_max(){
-	y_min = val_maxmin[0];
-	y_max = val_maxmin[0];
+	y_min = val_maxmin[0];	//prva hodnota z pola max_min hodnot
+	y_max = val_maxmin[0];	//	--//--
 
 	for (int k = 1; k <= 29; k++) {
-		if (val_maxmin[k] < y_min) {
+		if (val_maxmin[k] < y_min) {	//ak plati podmienka tak je nove minimum pre Y
 			y_min = val_maxmin[k];
 		}
-		if (val_maxmin[k] > y_max) {
+		if (val_maxmin[k] > y_max) {	//ak plati podmienka tak je nove maximum pre Y
 			y_max = val_maxmin[k];
 		}
 	}
 }
 
 void get_Y_data(){
-	y_t = 0;
+	y_t = 0;	//per istotu vynulovat
 	y_t = getSPIdata(0x2B);	//get Y_high, 2B
 
 	y = (int) y_t;	//pretypovanie z uint16_t na int
@@ -242,43 +242,20 @@ void get_Y_data(){
 	}
 }
 
-int shift_values(int x){
-	if (x < 9) {
-		values[0] = values[1];
-		values[1] = values[2];
-		values[2] = values[3];
-		values[3] = values[4];
-		values[4] = values[5];
-		values[5] = values[6];
-		values[6] = values[7];
-		values[7] = values[8];
-		values[8] = values[9];
-		values[9] = y;
-
-		x++;
-	} else if (x == 9) {
-		values[0] = values[1];
-		values[1] = values[2];
-		values[2] = values[3];
-		values[3] = values[4];
-		values[4] = values[5];
-		values[5] = values[6];
-		values[6] = values[7];
-		values[7] = values[8];
-		values[8] = values[9];
-		values[9] = y;
-		x = 0;
+void shift_values(){
+	for(int a=0;a<9;a++){		//v cykle sa posunie kazda hodnota pola na poziciu n-1
+		values[a] = values[a+1];
 	}
 
-	return x;
+	values[9] = y;	//pridanie poslednej aktualne hodnoty Y
 }
 
-void get_Y_average(){
-	avg = (values[0] + values[1] + values[2] + values[3] + values[4]
+int get_Y_average(){	//vrati vypocitany priemer z pola values
+	return (values[0] + values[1] + values[2] + values[3] + values[4]
 			+ values[5] + values[6] + values[7] + values[8] + values[9])
 			/ 10;
 }
 
-int get_threshold(){
+int get_threshold(){	//vrati threshold z max,min
 	return (y_max + y_min) / 2;
 }

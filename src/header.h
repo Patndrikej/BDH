@@ -23,14 +23,11 @@ int y;
 int y_min;
 int y_max;
 int y_old;
-int values[10];
-int val_maxmin[30];
-int status;
+int values[10];			//pole na priemerovanie hodnot Y z akcelerometra
+int val_maxmin[30];		//pole z ktoreho sa urci max a min hodnoty
 int kroky;
-int avg;
-int threshold;
 
-uint16_t y_t;
+uint16_t y_t;			//hodnota Y z akcelerometra
 uint8_t buttonState;
 
 void initialization();
@@ -47,8 +44,8 @@ void reset_kroky();
 void delay(int c);
 void update_min_max();
 void get_Y_data();
-int shift_values(int x);
-void get_Y_average();
+void shift_values();
+int get_Y_average();
 int get_threshold();
 
 #endif /* HEADER_H_ */
