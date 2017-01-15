@@ -1,0 +1,9 @@
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\bin\Debug\KrokomerApp.exe.config
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\bin\Debug\KrokomerApp.exe
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\bin\Debug\KrokomerApp.pdb
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.csprojResolveAssemblyReference.cache
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.Form1.resources
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.Properties.Resources.resources
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.csproj.GenerateResource.Cache
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.exe
+C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.pdb
