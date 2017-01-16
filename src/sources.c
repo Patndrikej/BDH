@@ -259,3 +259,8 @@ int get_Y_average(){	//vrati vypocitany priemer z pola values
 int get_threshold(){	//vrati threshold z max,min
 	return (y_max + y_min) / 2;
 }
+
+int vypocitaj_vzdialenost(){
+
+	return kroky*dlzka_kroku;
+}

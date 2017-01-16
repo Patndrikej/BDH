@@ -47,8 +47,7 @@ int main(void) {
 	}
 
 	threshold = get_threshold();	//vypocita threshold na zaklade (y_max+y_min)/2
-	i = 0;							//vynulovat i kvoli ukladaniu hodnot do pola values od 0
-
+	i = 0;
 
 //****************MAIN LOOP**********************//
 	while (1) {
@@ -86,7 +85,10 @@ int main(void) {
 		}
 /*********PODMIENKA NA KROKY++*********/
 
-		sprintf(send, "%d      %d      %d      %d      %d\r\n", y_min, y_max, y_avg, threshold, kroky);
+		//sprintf(send, "%d      %d      %d      %d      %d\r\n", y_min, y_max, y_avg, threshold, kroky);
+		//sprintf(send, ";%d:%d:%d:%d:%d;", y_min, y_max, y_avg, threshold, kroky);
+
+		sprintf(send, "%d", kroky);
 		USARTp_start(send);
 
 		delay(5000);

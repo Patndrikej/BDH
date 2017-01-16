@@ -16,7 +16,7 @@
 
 int value;
 char Rec;
-char send[64];
+char send[8];
 int j;
 
 int y;
@@ -26,6 +26,7 @@ int y_old;
 int values[10];			//pole na priemerovanie hodnot Y z akcelerometra
 int val_maxmin[30];		//pole z ktoreho sa urci max a min hodnoty
 int kroky;
+double dlzka_kroku;
 
 uint16_t y_t;			//hodnota Y z akcelerometra
 uint8_t buttonState;
@@ -47,5 +48,6 @@ void get_Y_data();
 void shift_values();
 int get_Y_average();
 int get_threshold();
+int vypocitaj_vzdialenost();
 
 #endif /* HEADER_H_ */
