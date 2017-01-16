@@ -1,0 +1,9 @@
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\bin\Release\KrokomerApp.exe.config
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\bin\Release\KrokomerApp.exe
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\bin\Release\KrokomerApp.pdb
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.csprojResolveAssemblyReference.cache
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.Form1.resources
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.Properties.Resources.resources
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.csproj.GenerateResource.Cache
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.exe
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Release\KrokomerApp.pdb

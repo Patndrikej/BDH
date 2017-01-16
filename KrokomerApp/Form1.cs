@@ -67,12 +67,16 @@ namespace KrokomerApp
 
         private void getValue(string stepCount)
         {
-            double distance = (Convert.ToInt32(stepCount) * Convert.ToDouble(textBox3.Text));
-            double speed = (distance/Convert.ToDouble(_elapsed.Minutes))*3.6;
+            if (textBox3.Text != "")
+            {
+                double distance = (Convert.ToInt32(stepCount) * Convert.ToDouble(textBox3.Text));
+                double speed = (distance/Convert.ToDouble(_elapsed.Minutes))*3.6;
+                textBox4.Text = speed.ToString() + " km/h";             //avg. speed
+                textBox5.Text = distance.ToString() + " m";   //distance outut
+            }
             textBox2.Text = stepCount;                    //number of steps output
             textBox2.ForeColor = Color.Red;
-            textBox4.Text = speed.ToString() + " km/h";             //avg. speed
-            textBox5.Text = distance.ToString() + " m";   //distance outut
+
 
         }
 

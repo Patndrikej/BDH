@@ -7,3 +7,6 @@ C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\o
 C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.csproj.GenerateResource.Cache
 C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.exe
 C:\Balint\SULI\VYSKA\8.Semester\VRS\Semestrane zadanie\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.pdb
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\bin\Debug\KrokomerApp.exe.config
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.exe
+C:\Users\Patrik\Documents\Skola\FEI API,ROBOTIKA\VRS\krokomer\KrokomerApp\KrokomerApp\obj\Debug\KrokomerApp.pdb
